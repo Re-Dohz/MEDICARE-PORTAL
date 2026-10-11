@@ -1,4 +1,5 @@
-/* ==================================================================
+
+   /* ================================================================
    DEVELOPER 3 · PATIENT SEARCH
    File: js/04-patient-search.js      (you edit ONLY this file)
 
@@ -16,21 +17,28 @@
 
    CONCEPTS: variables, array methods (filter, includes), functions,
              DOM, conditionals
-   ================================================================== */
+   ================================================================ */
 
 function searchPatients() {
   // STEP 1. Read what was typed and make it lower case so "JOHN" finds John:
-  //         const typed = document.getElementById("searchBox").value.toLowerCase();
+  const typed = document.getElementById("searchBox").value.toLowerCase();
 
   // STEP 2. Keep the matching patients with filter():
-  //         const results = patients.filter(function (patient) {
-  //           return patient.name.toLowerCase().includes(typed);
-  //         });
+  const results = patients.filter(function (patient) {
+    return patient.name.toLowerCase().includes(typed);
+  });
 
-  // STEP 3. Show them:  renderPatientList(results);
+  // STEP 3. Show them:
+  renderPatientList(results);
 
   // STEP 4. Write a message into #search-message with if / else if / else:
-  //         typed is empty         -> ""   (clear the message)
-  //         results.length === 0   -> `No patient matches "${typed}".`
-  //         otherwise              -> `${results.length} patient(s) found.`
+  const message = document.getElementById("search-message");
+
+  if (typed === "") {
+    message.textContent = "";
+  } else if (results.length === 0) {
+    message.textContent = `No patient matches "${typed}".`;
+  } else {
+    message.textContent = `${results.length} patient(s) found.`;
+  }
 }
